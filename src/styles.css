@@ -1,0 +1,97 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+@custom-variant dark (&:is(.dark *));
+
+html { scroll-behavior: smooth; }
+*, *::before, *::after { box-sizing: border-box; }
+
+/* ─── Legacy utility classes (section content uses these) ─── */
+.highlightbox { width: 100%; background: #FFFF66; padding: 8px; border: 1px solid #FFCC33; color: #333333; font-size: 0.9rem; }
+.heading { font-weight: 600; font-size: 0.95rem; color: #1a5a1a; }
+.heading2 { font-size: 1.4rem; font-style: italic; font-weight: 700; color: #1a7a3a; }
+.heading3 { font-size: 0.95rem; font-style: italic; font-weight: 700; color: #555; }
+.heading4 { font-size: 1.8rem; font-weight: 700; color: #333; }
+.heading6 { font-size: 2.4rem; font-weight: 700; color: #1a7a3a; }
+.textmatter { font-size: 0.95rem; color: #444; line-height: 1.7; }
+.section-heading { font-weight: 700; font-size: 1.1rem; color: #222; padding: 0.75rem 1rem; margin: 1.2rem 0 0.75rem; background: #e8f5e9; border-left: 4px solid #1a7a3a; text-align: center; }
+.sep { height: 1px; background: #ddd; margin: 1rem 0; }
+.space { height: 5px; }
+.space1 { height: 10px; }
+.space2 { height: 15px; }
+.space3 { height: 18px; }
+.clear { clear: both; }
+
+/* ─── Gallery (product image grid) ─── */
+.gallery { width: 23%; float: left; margin: 0 1% 0.5rem 0; }
+.gallery img { width: 100% !important; height: auto !important; border-radius: 6px; border: 1px solid #e5e7eb; transition: transform 0.2s, box-shadow 0.2s; }
+.gallery img:hover { transform: scale(1.03); box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+
+/* ─── Column layouts ─── */
+.column21 { width: 48%; float: left; margin-right: 1%; background: #e5e7eb; padding: 2%; border-radius: 8px; }
+.column21 iframe { width: 100% !important; aspect-ratio: 16 / 9; border-radius: 6px; }
+
+/* ─── Nav ─── */
+#cssmenu { width: 100%; font-family: inherit; font-size: 0.85rem; }
+#cssmenu ul, #cssmenu li { list-style: none; margin: 0; padding: 0; }
+#cssmenu ul { position: relative; z-index: 597; }
+#cssmenu ul li { float: left; }
+#cssmenu ul li:hover { position: relative; z-index: 599; cursor: default; }
+#cssmenu a { display: block; text-decoration: none; padding-left: 12px; padding-right: 12px; transition: all 0.15s; }
+#cssmenu ul li:hover > a, #cssmenu ul li.active > a { font-weight: 700; }
+#cssmenu ul ul { visibility: hidden; position: absolute; top: 100%; left: 0; z-index: 598; min-width: 200px; }
+#cssmenu ul ul li { float: none; }
+#cssmenu ul li:hover > ul { visibility: visible; }
+#cssmenu ul ul a { line-height: 1.5; padding: 12px 20px; }
+#cssmenu ul ul li { display: block; }
+
+/* ─── Right banner carousel — flap in from each edge (WOWSlider-style) ─── */
+@keyframes flapTop    { from { transform: rotateX(-90deg); opacity: 0.5; } to { transform: rotateX(0deg);  opacity: 1; } }
+@keyframes flapRight  { from { transform: rotateY(90deg);  opacity: 0.5; } to { transform: rotateY(0deg);  opacity: 1; } }
+@keyframes flapBottom { from { transform: rotateX(90deg);  opacity: 0.5; } to { transform: rotateX(0deg);  opacity: 1; } }
+@keyframes flapLeft   { from { transform: rotateY(-90deg); opacity: 0.5; } to { transform: rotateY(0deg);  opacity: 1; } }
+
+.flap-from-top    { transform-origin: center top;    animation: flapTop    0.75s cubic-bezier(0.4,0,0.2,1) forwards; }
+.flap-from-right  { transform-origin: right center;  animation: flapRight  0.75s cubic-bezier(0.4,0,0.2,1) forwards; }
+.flap-from-bottom { transform-origin: center bottom; animation: flapBottom 0.75s cubic-bezier(0.4,0,0.2,1) forwards; }
+.flap-from-left   { transform-origin: left center;   animation: flapLeft   0.75s cubic-bezier(0.4,0,0.2,1) forwards; }
+
+/* ─── Carousel ─── */
+.carousel-btn { position: absolute; top: 50%; transform: translateY(-50%); z-index: 10; background: rgba(0,0,0,0.35); border: none; border-radius: 6px; width: 32px; height: 48px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background 0.2s; }
+.carousel-btn:hover { background: rgba(0,0,0,0.6); }
+.carousel-btn-prev { left: 8px; }
+.carousel-btn-next { right: 8px; }
+
+/* ─── Sidebar resources ─── */
+#link a { font-size: 0.9rem; color: #fff; line-height: 1.5; }
+#link a:hover { text-decoration: underline; }
+
+/* ─── Sidebar left scrollbar ─── */
+.sidebar-scroll {
+  overflow-y: auto;
+  direction: rtl;        /* moves scrollbar to the left */
+}
+.sidebar-scroll > * {
+  direction: ltr;        /* restore reading direction for inner content */
+}
+/* Custom scrollbar styling for the sidebar */
+.sidebar-scroll::-webkit-scrollbar { width: 6px; }
+.sidebar-scroll::-webkit-scrollbar-track { background: #2a2a2a; }
+.sidebar-scroll::-webkit-scrollbar-thumb { background: #666; border-radius: 3px; }
+.sidebar-scroll::-webkit-scrollbar-thumb:hover { background: #888; }
+
+/* ─── Products section grid ─── */
+.products-grid { display: flex; flex-wrap: wrap; gap: 1rem; margin: 1rem 0; }
+.product-card { flex: 1 1 180px; max-width: 220px; text-align: center; }
+.product-image { width: 100%; height: auto; border-radius: 6px; border: 1px solid #e5e7eb; transition: transform 0.2s, box-shadow 0.2s; }
+.product-image:hover { transform: scale(1.03); box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+.product-title { display: block; margin-top: 6px; font-size: 0.85rem; }
+.product-link, .product-title-link { text-decoration: none; }
+.product-title-link:hover { text-decoration: underline; }
+
+/* ─── Mobile overrides ─── */
+@media (max-width: 767px) {
+  .gallery { width: 30%; margin: 0 1.5% 0.5rem 0; }
+  .column21 { width: 100%; float: none; margin: 0 0 0.75rem; }
+  .column21 iframe { width: 100% !important; height: auto !important; }
+}
